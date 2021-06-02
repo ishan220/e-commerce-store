@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import logo from '../assets/logo.svg'
-import { FaBars } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { links } from '../utils/constants'
-import CartButtons from './CartButtons'
-import { useProductsContext } from '../context/products_context'
-import { useUserContext } from '../context/user_context'
-import {useCartContext} from '../context/cart_context' ;
-// const Nav = () => { 
+import React from "react";
+import styled from "styled-components";
+import logo from "../assets/logo.svg";
+import { FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { links } from "../utils/constants";
+import CartButtons from "./CartButtons";
+import { useProductsContext } from "../context/products_context";
+import { useUserContext } from "../context/user_context";
+import { useCartContext } from "../context/cart_context";
+// const Nav = () => {
 //   const { openSidebar } = useProductsContext()
 //   const { myUser } = useUserContext()
 //   return (
@@ -109,45 +109,40 @@ import {useCartContext} from '../context/cart_context' ;
 //     }
 //   }
 // `
-const Nav=()=>{
-  const {totalQty}=useCartContext();
-  const {user}=useUserContext();
-return(<>
-    <Wrapper>
-    <div className='nav-items'>
-     <img src={logo} alt="logo"></img>
-     <div className="nav-links">
-     <Link to="/">Home</Link>
-     <Link to="/about">About</Link>
-     <Link to="/products">Products</Link>
-     {user?<Link to="/checkout">Checkout</Link>:null}
-     </div>
-     <CartButtons/>
-    </div>
-    </Wrapper>
+const Nav = () => {
+  const { totalQty } = useCartContext();
+  const { user } = useUserContext();
+  return (
+    <>
+      <Wrapper>
+        <div className="nav-items">
+          <img src={logo} alt="logo"></img>
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/products">Products</Link>
+            {user ? <Link to="/checkout">Checkout</Link> : null}
+          </div>
+          <CartButtons />
+        </div>
+      </Wrapper>
+    </>
+  );
+};
 
-
-
-</>);
-}
-
-const Wrapper=styled.div`
-  background-color:rgb(200,180,150);
-  .nav-items
-  {
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    align-items:center;
- }
-
-  .nav-links
-  {
-    width:24%;
-    display:flex;
-    justify-content:space-around;
-
+const Wrapper = styled.div`
+  background-color: rgb(200, 180, 150);
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
   }
-  
-`
-export default Nav
+
+  .nav-links {
+    width: 24%;
+    display: flex;
+    justify-content: space-around;
+  }
+`;
+export default Nav;

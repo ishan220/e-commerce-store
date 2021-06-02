@@ -1,11 +1,11 @@
 // import { initialAuthState } from '@auth0/auth0-react/dist/auth-state';
-import React,{useReducer,useEffect,useState} from 'react'
-import styled from 'styled-components'
- import { useFilterContext } from '../context/filter_context'
+import React, { useReducer, useEffect, useState } from "react";
+import styled from "styled-components";
+import { useFilterContext } from "../context/filter_context";
 // import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import { FaCheck } from "react-icons/fa";
 // import { initialAuthState } from '@auth0/auth0-react/dist/auth-state'
-import { products_url as url } from '../utils/constants'
+import { products_url as url } from "../utils/constants";
 
 // let categories=[]
 // let companies=[];
@@ -21,143 +21,206 @@ import { products_url as url } from '../utils/constants'
 //   shipping:[]
 // };
 
- const Filters=() =>{
-   const {dispatch,colors,companies,categories,price,min_price,max_price,shipping}=useFilterContext();
-// const filterproducts=(state)=>{
-// const tmpprod=[...state.allproducts];
-//      const {company,category,color,price}=state;
-//      if(company!='All')
-//      tmpprod=tmpprod.filter((prod)=>prod.company==company);
-//      if(category!='All')
-//      tmpprod=tmpprod.filter((prod)=>prod.category==category);
-//      if(color!='All')
-//       tmpprod=tmpprod.filter((prod)=>prod.category==category);
-//       if(price>=0)
-//        tmpprod=tmpprod.filter((prod)=>prod.price<=price);
-//        state.filteredproducts=tmpprod;
-// }
-//   // const [catState,setCatState]=useState([]);
-//   const reducer=(state,action)=>
-  
-//   {
-//      if(action.type=='initsetting')
-//      {
-//       let tCat=[...new Set(action.payload.map((product)=>product.category))];
-//       let tcomp=[...new Set(action.payload.map((product)=>product.company))];
-//        let tcolors=[...new Set(action.payload.map((product)=>product.colors).flat())];
-//        let tprice=Math.max(...(action.payload.map((product)=>product.price)));
-//       //  let tship=action.payload.map((product)=>product.shipping)
-//       //  console.log(tprice);
-//        categories=["All",...tCat];
-//        companies=["All",...tcomp];
-//        colors=["All",...tcolors]
-//       //  console.log("inside reducer",tcolors.flat());
-//        return {...state,allproducts:action.payload,filteredproducts:action.payload};
-//      }
-//      if(action.type==='category')
-//       {  state.category=action.payload.category
-//           filterproducts(state);
-//        return{...state,category:action.payload.category}
-//       //  return {...state,products:tprod};
-//      }
-//      if(action.type==='company')
-//      {
-//        state.category=action.payload
-//           filterproducts(state);
-//        return{...state,category:action.payload};
-//      }
-     
+const Filters = () => {
+  const {
+    dispatch,
+    colors,
+    companies,
+    categories,
+    price,
+    min_price,
+    max_price,
+    shipping,
+  } = useFilterContext();
+  // const filterproducts=(state)=>{
+  // const tmpprod=[...state.allproducts];
+  //      const {company,category,color,price}=state;
+  //      if(company!='All')
+  //      tmpprod=tmpprod.filter((prod)=>prod.company==company);
+  //      if(category!='All')
+  //      tmpprod=tmpprod.filter((prod)=>prod.category==category);
+  //      if(color!='All')
+  //       tmpprod=tmpprod.filter((prod)=>prod.category==category);
+  //       if(price>=0)
+  //        tmpprod=tmpprod.filter((prod)=>prod.price<=price);
+  //        state.filteredproducts=tmpprod;
+  // }
+  //   // const [catState,setCatState]=useState([]);
+  //   const reducer=(state,action)=>
 
+  //   {
+  //      if(action.type=='initsetting')
+  //      {
+  //       let tCat=[...new Set(action.payload.map((product)=>product.category))];
+  //       let tcomp=[...new Set(action.payload.map((product)=>product.company))];
+  //        let tcolors=[...new Set(action.payload.map((product)=>product.colors).flat())];
+  //        let tprice=Math.max(...(action.payload.map((product)=>product.price)));
+  //       //  let tship=action.payload.map((product)=>product.shipping)
+  //       //  console.log(tprice);
+  //        categories=["All",...tCat];
+  //        companies=["All",...tcomp];
+  //        colors=["All",...tcolors]
+  //       //  console.log("inside reducer",tcolors.flat());
+  //        return {...state,allproducts:action.payload,filteredproducts:action.payload};
+  //      }
+  //      if(action.type==='category')
+  //       {  state.category=action.payload.category
+  //           filterproducts(state);
+  //        return{...state,category:action.payload.category}
+  //       //  return {...state,products:tprod};
+  //      }
+  //      if(action.type==='company')
+  //      {
+  //        state.category=action.payload
+  //           filterproducts(state);
+  //        return{...state,category:action.payload};
+  //      }
 
+  //      //filtering
 
+  //   }
+  //   const [state,dispatch]=useReducer(reducer,iniState);
 
+  //    const getProducts= async () =>
+  //    { const dta=await fetch(`${url}`);
+  //      const products=await dta.json();
+  //       dispatch({type:'initsetting',payload:products});
+  //      console.log("innside async",iniState.category)
+  //    }
+  //    useEffect(()=>
+  //    {
+  //      getProducts();
+  //    },
+  //    []);
 
-
-
-//      //filtering
-     
-
-//   }
-//   const [state,dispatch]=useReducer(reducer,iniState);
-
-//    const getProducts= async () =>
-//    { const dta=await fetch(`${url}`);
-//      const products=await dta.json();
-//       dispatch({type:'initsetting',payload:products});
-//      console.log("innside async",iniState.category)
-//    }
-//    useEffect(()=>
-//    {
-//      getProducts();
-//    },
-//    []);
-  
   //  console.log("consol from outside",iniState.category);
   return (
     <>
       <form>
-        <input placeholder="search" onChange={(e)=>dispatch({type:"search",payload:e.target.value})} type="search"/>
-        <label htmlFor='category'><strong>Category</strong></label>
-           {categories.map((category)=>{
-            
-            return (<><br/><label htmlFor="${cat}">{category}</label>
-            <span> </span><input type='radio' name="category" onClick={()=>dispatch({type:'category',payload:{category}})}></input>
-            </> );
-            }
-           )
+        <input
+          placeholder="search"
+          onChange={(e) =>
+            dispatch({ type: "search", payload: e.target.value })
           }
-          <br></br>
-           <label htmlFor='companies'><strong>Company</strong></label>
-           <br/>
-           <select name='company' onChange={(e)=>dispatch({type:'company',payload:e.target.value})}>
-           {companies.map((company)=>{
-             return(<><option value={company}>{company}</option></>); 
-            }
-           )
+          type="search"
+        />
+        <label htmlFor="category">
+          <strong>Category</strong>
+        </label>
+        {categories.map((category) => {
+          return (
+            <>
+              <br />
+              <label htmlFor="${cat}">{category}</label>
+              <span> </span>
+              <input
+                type="radio"
+                name="category"
+                onClick={() =>
+                  dispatch({ type: "category", payload: { category } })
+                }
+              ></input>
+            </>
+          );
+        })}
+        <br></br>
+        <label htmlFor="companies">
+          <strong>Company</strong>
+        </label>
+        <br />
+        <select
+          name="company"
+          onChange={(e) =>
+            dispatch({ type: "company", payload: e.target.value })
           }
-          </select>
-          <br/>
-        <label htmlFor='colors'><strong>Colors</strong></label>
-        <br/>
-           {colors.map((color)=>{
-              if(color=="All")
-              return(<><button name='color' style={{background:color,borderRadius:'25%',width:'10%',height:'10px',border:'hidden'}} value={color} onClick={(e)=>dispatch({type:"color",payload:{color}})}>All</button></>)
-              return(<><button name='color' style={{background:color,borderRadius:'40%',width:'10%',height:'10px'}} value={color} id={`${color}`} onClick={(e)=>{e.preventDefault();console.log(e.target.value);dispatch({type:"color",payload:e.target.value})}}></button></>)
-            
-             
-            }
-           )
-          }
-          <br/>
+        >
+          {companies.map((company) => {
+            return (
+              <>
+                <option value={company}>{company}</option>
+              </>
+            );
+          })}
+        </select>
+        <br />
+        <label htmlFor="colors">
+          <strong>Colors</strong>
+        </label>
+        <br />
+        {colors.map((color) => {
+          if (color == "All")
+            return (
+              <>
+                <button
+                  name="color"
+                  style={{
+                    background: color,
+                    borderRadius: "25%",
+                    width: "10%",
+                    height: "10px",
+                    border: "hidden",
+                  }}
+                  value={color}
+                  onClick={(e) =>
+                    dispatch({ type: "color", payload: { color } })
+                  }
+                >
+                  All
+                </button>
+              </>
+            );
+          return (
+            <>
+              <button
+                name="color"
+                style={{
+                  background: color,
+                  borderRadius: "40%",
+                  width: "10%",
+                  height: "10px",
+                }}
+                value={color}
+                id={`${color}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log(e.target.value);
+                  dispatch({ type: "color", payload: e.target.value });
+                }}
+              ></button>
+            </>
+          );
+        })}
+        <br />
         <label htmlFor="price">Price</label>
-        <br/>
-        <input name='pricerange' value={price} type='range' min={min_price} max={max_price} value={price} onChange={(e)=>{console.log(e.target.value);dispatch({type:'price',payload:e.target.value})}}></input>
-        <br/>
-        <label htmlFor='shipping' >Free Shipping</label>
+        <br />
+        <input
+          name="pricerange"
+          value={price}
+          type="range"
+          min={min_price}
+          max={max_price}
+          value={price}
+          onChange={(e) => {
+            console.log(e.target.value);
+            dispatch({ type: "price", payload: e.target.value });
+          }}
+        ></input>
+        <br />
+        <label htmlFor="shipping">Free Shipping</label>
         <span> </span>
-         <input type='checkbox' name='shipping' onChange={(e)=>dispatch({type:'shipping'})} />
-           <br/>
-         <button className='warning' onClick={()=>dispatch({type:'reset'})}>Clear Filters</button>
-      </form> 
-     
-
-
+        <input
+          type="checkbox"
+          name="shipping"
+          onChange={(e) => dispatch({ type: "shipping" })}
+        />
+        <br />
+        <button className="warning" onClick={() => dispatch({ type: "reset" })}>
+          Clear Filters
+        </button>
+      </form>
     </>
   );
-        
-
-}
-
-
-
-
-
-
-
-
-
-
-
+};
 
 // const Filters = () => {
 //   const {
@@ -237,7 +300,7 @@ import { products_url as url } from '../utils/constants'
 //             </select>
 //           </div>
 //           {/* end of companies */}
-//           {/* 
+//           {/*
 //           colors
 //           */}
 //           <div className='form-control'>
@@ -276,7 +339,7 @@ import { products_url as url } from '../utils/constants'
 //               })}
 //             </div>
 //           </div>
-//           {/* 
+//           {/*
 // end of           colors
 //           */}
 //           {/* price */}

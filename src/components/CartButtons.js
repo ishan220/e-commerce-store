@@ -1,10 +1,10 @@
-import React from 'react'
-import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { useProductsContext } from '../context/products_context'
-import { useCartContext } from '../context/cart_context'
-import { useUserContext } from '../context/user_context'
+import React from "react";
+import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useProductsContext } from "../context/products_context";
+import { useCartContext } from "../context/cart_context";
+import { useUserContext } from "../context/user_context";
 
 // const CartButtons = () => {
 //   const { closeSidebar } = useProductsContext()
@@ -94,34 +94,67 @@ import { useUserContext } from '../context/user_context'
 //   }
 // `
 const CartButtons = () => {
-  const {totalQty}=useCartContext();
-  const {loginWithRedirect, logout, myUser,isAuthenticated,user}=useUserContext();
-  return(
+  const { totalQty } = useCartContext();
+  const { loginWithRedirect, logout, myUser, isAuthenticated, user } =
+    useUserContext();
+  return (
     <Wrapper>
-   <div className='cart-links'>
-     <div className='cart'>
-      <span style={{margin:"0px 1px"}}> <Link to="/cart">
-         Cart 
-                 <span style={{position:"relative"}}><FaShoppingCart/><span style={{position:"absolute",top:"-45%",left:"50%",background:"red",borderRadius:"50%",width:"25px",height:"25px",textAlign:"center"}}>{totalQty}</span></span>
-       </Link>
-  
-     <div style={{display:"inline-block",margin:"0px 2px",padding:"0px 15px"}}>
-      {user?<button onClick={()=>logout({returnTo:window.location.origin})}>Logout <FaUserMinus/></button>:<button onClick={loginWithRedirect}>Login <FaUserPlus/></button>} 
-       
-       {/* <Link>{LoggedIn?"LogIn":"LogOut"}</Link>{LoggedIn?<FaUserMinus/>:<FaUserPlus/>} */}
-     </div>
-     </span>
-     </div>
-   </div>
-   </Wrapper>
-  );
-}
-const Wrapper=styled.div`
-   display:flex;
-   justify-content:center;
-   width:20%;
-   font-size:1.25rem;
-   padding:0 auto;
+      <div className="cart-links">
+        <div className="cart">
+          <span style={{ margin: "0px 1px" }}>
+            {" "}
+            <Link to="/cart">
+              Cart
+              <span style={{ position: "relative" }}>
+                <FaShoppingCart />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "-45%",
+                    left: "50%",
+                    background: "red",
+                    borderRadius: "50%",
+                    width: "25px",
+                    height: "25px",
+                    textAlign: "center",
+                  }}
+                >
+                  {totalQty}
+                </span>
+              </span>
+            </Link>
+            <div
+              style={{
+                display: "inline-block",
+                margin: "0px 2px",
+                padding: "0px 15px",
+              }}
+            >
+              {user ? (
+                <button
+                  onClick={() => logout({ returnTo: window.location.origin })}
+                >
+                  Logout <FaUserMinus />
+                </button>
+              ) : (
+                <button onClick={loginWithRedirect}>
+                  Login <FaUserPlus />
+                </button>
+              )}
 
-`
-export default CartButtons
+              {/* <Link>{LoggedIn?"LogIn":"LogOut"}</Link>{LoggedIn?<FaUserMinus/>:<FaUserPlus/>} */}
+            </div>
+          </span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  font-size: 1.25rem;
+  padding: 0 auto;
+`;
+export default CartButtons;
