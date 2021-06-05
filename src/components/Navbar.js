@@ -110,7 +110,7 @@ import { useCartContext } from "../context/cart_context";
 //   }
 // `
 const Nav = () => {
-  const { totalQty } = useCartContext();
+  const { totalQty, Cart } = useCartContext();
   const { user } = useUserContext();
   return (
     <>
@@ -121,7 +121,7 @@ const Nav = () => {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/products">Products</Link>
-            {user ? <Link to="/checkout">Checkout</Link> : null}
+            {user && Cart ? <Link to="/checkout">Checkout</Link> : null}
           </div>
           <CartButtons />
         </div>

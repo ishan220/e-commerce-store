@@ -1,79 +1,81 @@
-import React, { useEffect, useContext, useReducer ,useState} from 'react'
-import reducer from '../reducers/cart_reducer'
+import React, { useEffect, useContext, useReducer, useState } from "react";
+import reducer from "../reducers/cart_reducer";
 import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
   COUNT_CART_TOTALS,
-} from '../actions'
+} from "../actions";
 
-import {useFilterContext} from './filter_context';
+import { useFilterContext } from "./filter_context";
 
-const CartContext=React.createContext();
+const CartContext = React.createContext();
 
-const getLocalStorage=()=>
-{
-  let temp1=localStorage.getItem('cart');
-  if(temp1!=null&&temp1!=0)
-  {
-  return JSON.parse(temp1);
-  }
-  else
-  return [] ;
+const getLocalStorage = () => {
+  let temp1 = localStorage.getItem("cart");
+  if (temp1 != null && temp1 != 0) {
+    return JSON.parse(temp1);
+  } else return [];
+};
+const getLocalQty = () => {
+  let temp = localStorage.getItem("qty");
+  if (temp) {
+    return JSON.parse(temp);
+  } else return 0;
+};
 
-}
-const getLocalQty=()=>
-{
-  let temp=localStorage.getItem('qty');
-  if(temp)
-  {
-  return JSON.parse(temp);
-  }
-  else
-  return 0;
-
-}
-
-export const CartProvider=({children})=>
-{
-//   window.onbeforeunload = function() {
-//    localStorage.clear();
-// }
- const [Cart,setCart]=useState(getLocalStorage());
-const [totalQty,setTotalQty]=useState(getLocalQty());
-const {state,changeState}=useFilterContext();
-const [currentId,setCurrentId]=useState();
-const [currentQty,setCurrentQty]=useState();
-const [totalBill,setTotalBill]=useState(0);
-   useEffect(()=>
-  {console.log()
-    localStorage.setItem('cart',JSON.stringify(Cart));
-    localStorage.setItem('qty',totalQty);
-    let calc=0;
-    {Cart&&Cart.map((product)=>{
-      calc=calc+product.price*product.qty;
-      return product;
-    }
-    )
+export const CartProvider = ({ children }) => {
+  //   window.onbeforeunload = function() {
+  //    localStorage.clear();
+  // }
+  const [Cart, setCart] = useState(getLocalStorage());
+  const [totalQty, setTotalQty] = useState(getLocalQty());
+  const { state, changeState } = useFilterContext();
+  const [currentId, setCurrentId] = useState();
+  const [currentQty, setCurrentQty] = useState();
+  const [totalBill, setTotalBill] = useState(0);
+  useEffect(() => {
+    console.log();
+    localStorage.setItem("cart", JSON.stringify(Cart));
+    localStorage.setItem("qty", totalQty);
+    let calc = 0;
+    {
+      Cart &&
+        Cart.map((product) => {
+          calc = calc + product.price * product.qty;
+          return product;
+        });
     }
     setTotalBill(calc);
-  }, [Cart]);
+  }, [Cart, totalQty]);
 
-const deleteItem=(id)=>{
-  let tempprod=Cart.filter((item)=>item.id!=id);
-  setCart(tempprod);
-}
-   return (
-     <CartContext.Provider value={{Cart,deleteItem,setCart,totalQty,setTotalQty,currentId,setCurrentId,setCurrentQty,totalBill}}>{children}</CartContext.Provider>
-     )
+  useEffect(() => {
+    setTotalQty(totalQty);
+  }, [totalQty]);
 
-}
-
-
-
-
-
+  const deleteItem = (id) => {
+    let tempprod = Cart.filter((item) => item.id != id);
+    setCart(tempprod);
+  };
+  return (
+    <CartContext.Provider
+      value={{
+        Cart,
+        deleteItem,
+        setCart,
+        totalQty,
+        setTotalQty,
+        currentId,
+        setCurrentId,
+        setCurrentQty,
+        totalBill,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
 
 // const getLocalStorage = () => {
 //   let cart = localStorage.getItem('cart')
@@ -130,4 +132,4 @@ const deleteItem=(id)=>{
 // // make sure use
 export const useCartContext = () => {
   return useContext(CartContext);
-}
+};
